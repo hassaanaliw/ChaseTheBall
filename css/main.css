@@ -16,6 +16,15 @@
     z-index: 100000;
 }
 
+.holder img:hover{
+    cursor: pointer;
+    -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+    -webkit-filter: sepia(1);
+    filter: sepia(1);
+}
+
 .title {
     font-family: 'Pacifico', sans-serif;
     font-size: 52px;
@@ -33,19 +42,20 @@
     padding-right: 20px;
 }
 
-.scores{
-    margin-top: 10px;
-    font-size: 32px;
-    font-family: 'Lobster',sans-serif;
+.scores {
+    margin-top: 20px;
+    font-size: 36px;
+    font-family: 'Lobster', sans-serif;
     font-weight: bold;
 }
 
 .noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                     supported by Chrome and Opera */
 }

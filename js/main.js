@@ -2,19 +2,33 @@ $(document).ready(function () {
 
     window.getSelection().removeAllRanges();
 
+    var sound = new Howl({
+      src: ['click.mp3']
+    });
+
     console.log("ready!");
     spos = $("#ball")[0].offsetTop;
     console.log($(window).height());
     var score = 0;
 
+    if (localStorage.getItem('score')) {
+        console.log("KIK");
+        score = parseInt(localStorage.getItem('score'));
+        $(".scores").text("Score: " + score);
+    }
+
     animateDiv();
 
 
     $("#ball").click(function () {
-        console.log("S: " + score);
+        sound.play();
         score += 1;
-        $(".scores").text("Score:" + score);
+        $(".scores").text("Score: " + score);
     });
+
+    window.onbeforeunload = function() {
+        localStorage.setItem('score',score);
+    };
 
 
 });
@@ -38,7 +52,7 @@ function calcSpeed(prev, next) {
 
     var greatest = x > y ? x : y;
 
-    var speedModifier = 1;
+    var speedModifier = 0.8;
 
     var speed = Math.ceil(greatest / speedModifier);
 
@@ -46,7 +60,7 @@ function calcSpeed(prev, next) {
 
 }
 
-function makeNewPosition(){
+function makeNewPosition() {
 
     // Get viewport dimensions (remove the dimension of the div)
     var h = $(window).height() - 50;
@@ -58,6 +72,7 @@ function makeNewPosition(){
     nh *= Math.floor(Math.random() * 2) == 1 ? 1 : -1;
     nw *= Math.floor(Math.random() * 2) == 1 ? 1 : -1;
 
-    return [nh,nw];
+    return [nh, nw];
 
 }
+
