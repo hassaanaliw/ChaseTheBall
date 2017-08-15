@@ -1,0 +1,51 @@
+.holder {
+    top: 60%;
+    position: absolute;
+    left: 0;
+    min-height: 120px;
+    min-width: 100%;
+
+}
+
+.holder img {
+    max-height: 180px;
+    max-width: 180px;
+    -webkit-filter: drop-shadow(0px 7px 1px #828282);
+    position: relative;
+    filter: drop-shadow(0px 7px 1px #828282);
+    z-index: 100000;
+}
+
+.title {
+    font-family: 'Pacifico', sans-serif;
+    font-size: 52px;
+}
+
+.sub-title {
+    font-family: 'Slabo 27px', sans-serif;
+    font-size: 22px;
+    margin-top: 40px;
+}
+
+.headings {
+    margin-top: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.scores{
+    margin-top: 10px;
+    font-size: 32px;
+    font-family: 'Lobster',sans-serif;
+    font-weight: bold;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
