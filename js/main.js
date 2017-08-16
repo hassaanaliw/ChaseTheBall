@@ -1,13 +1,20 @@
+/** CATCH THE BALL by Hassaan Ali Wattoo
+ * https://hassaanaliw.me :) **/
+
+
 $(document).ready(function () {
 
+    //disable selection which is pretty annoying when clicking multiple times
+    //is the point of the game
     window.getSelection().removeAllRanges();
 
     var sound = new Howl({
-      src: ['click.mp3']
+        src: ['click.mp3']
     });
 
     var score = 0;
 
+    //if score saved from previous sessions, restore it to continue game
     if (localStorage.getItem('score')) {
         score = parseInt(localStorage.getItem('score'));
         $(".scores").text("Score: " + score);
@@ -17,13 +24,15 @@ $(document).ready(function () {
 
 
     $("#ball").click(function () {
+        //play satisfying clicky sound and increment scores
         sound.play();
         score += 1;
         $(".scores").text("Score: " + score);
     });
 
-    window.onbeforeunload = function() {
-        localStorage.setItem('score',score);
+    //save score before closing window
+    window.onbeforeunload = function () {
+        localStorage.setItem('score', score);
     };
 
 
@@ -45,10 +54,18 @@ function calcSpeed(prev, next) {
 
     var x = Math.abs(prev[1] - next[1]);
     var y = Math.abs(prev[0] - next[0]);
+    var speedModifier;
 
     var greatest = x > y ? x : y;
 
-    var speedModifier = 0.8;
+
+    if (/Mobi/i.test(navigator.userAgent) || /Android/i.test(navigator.userAgent)) {
+        //increase speed on mobile devices since it's a bit easier on touch screens
+        speedModifier = 1.0;
+    }
+    else {
+        speedModifier = 0.8;
+    }
 
     return Math.ceil(greatest / speedModifier);
 
@@ -60,9 +77,12 @@ function makeNewPosition() {
     var h = $(window).height() - 50;
     var w = $(window).width() - 50;
 
+
+    //get new random coords for the ball to move to
     var nh = Math.floor(Math.random() * h);
     var nw = Math.floor(Math.random() * w);
 
+    //randomly add a negative sign to reverse the direction of motion
     nh *= Math.floor(Math.random() * 2) === 1 ? 1 : -1;
     nw *= Math.floor(Math.random() * 2) === 1 ? 1 : -1;
 
