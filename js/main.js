@@ -4,6 +4,8 @@
 
 $(document).ready(function () {
 
+    var colors = ['(119, 34, 34,0.7)', '(73, 185, 156,0.7)', '(90,66,132,0.7)'];
+
     //disable selection which is pretty annoying when clicking multiple times
     //is the point of the game
     window.getSelection().removeAllRanges();
@@ -34,6 +36,13 @@ $(document).ready(function () {
     window.onbeforeunload = function () {
         localStorage.setItem('score', score);
     };
+
+
+    setInterval(function () {
+        var color = "linear-gradient(rgba{0},rgba{0}), url(blueprint.jpg)".format(colors[Math.floor(Math.random() * colors.length)]);
+        $("body").css("background", color);
+        $("body").css("background-repeat","round");
+    }, 10000)
 
 
 });
@@ -91,7 +100,7 @@ function makeNewPosition() {
 }
 
 
-$.fn.nodoubletapzoom = function() {
+$.fn.nodoubletapzoom = function () {
     $(this).bind('touchstart', function preventZoom(e) {
         var t2 = e.timeStamp;
         var t1 = $(this).data('lastTouch') || t2;
@@ -107,4 +116,17 @@ $.fn.nodoubletapzoom = function() {
     });
 };
 $('body').nodoubletapzoom();
+
+
+if (!String.prototype.format) {
+    String.prototype.format = function () {
+        var args = arguments;
+        return this.replace(/{(\d+)}/g, function (match, number) {
+            return typeof args[number] != 'undefined'
+                ? args[number]
+                : match
+                ;
+        });
+    };
+}
 
