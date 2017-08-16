@@ -6,13 +6,9 @@ $(document).ready(function () {
       src: ['click.mp3']
     });
 
-    console.log("ready!");
-    spos = $("#ball")[0].offsetTop;
-    console.log($(window).height());
     var score = 0;
 
     if (localStorage.getItem('score')) {
-        console.log("KIK");
         score = parseInt(localStorage.getItem('score'));
         $(".scores").text("Score: " + score);
     }
@@ -54,9 +50,7 @@ function calcSpeed(prev, next) {
 
     var speedModifier = 0.8;
 
-    var speed = Math.ceil(greatest / speedModifier);
-
-    return speed;
+    return Math.ceil(greatest / speedModifier);
 
 }
 
@@ -69,8 +63,8 @@ function makeNewPosition() {
     var nh = Math.floor(Math.random() * h);
     var nw = Math.floor(Math.random() * w);
 
-    nh *= Math.floor(Math.random() * 2) == 1 ? 1 : -1;
-    nw *= Math.floor(Math.random() * 2) == 1 ? 1 : -1;
+    nh *= Math.floor(Math.random() * 2) === 1 ? 1 : -1;
+    nw *= Math.floor(Math.random() * 2) === 1 ? 1 : -1;
 
     return [nh, nw];
 
