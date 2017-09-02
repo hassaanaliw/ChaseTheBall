@@ -70,10 +70,10 @@ function calcSpeed(prev, next) {
 
     if (/Mobi/i.test(navigator.userAgent) || /Android/i.test(navigator.userAgent)) {
         //increase speed on mobile devices since it's a bit easier on touch screens
-        speedModifier = 1.0;
+        speedModifier = 1.3;
     }
     else {
-        speedModifier = 0.8;
+        speedModifier = 0.96;
     }
 
     return Math.ceil(greatest / speedModifier);
